@@ -13,34 +13,34 @@
 </head>
 
 <body>
+    <!-- main header -->
     <header>
         <h1>Weather Search</h1>
     </header>
+    <!-- search container -->
     <div class='search-container'>
         <h2>Search for a City:</h2>
         <input id='search-input' name='search-input' type='text' placeholder='Enter city here.'>
         <button id='search-button'>Search</button>
     </div>
+    <!-- previous search list -->
     <div class='previous-search-container'></div>
+    <!-- current search results display -->
     <div class='results-container'>
         <div id='current-weather'>
             <div id='current-header'>
             <span id='current-city'></span>
             <span id='current-date'></span>
-            <span id='current-icon'></span>
+            <span id='icon'><img id='current-icon' src=''></span>
             </div>
             <p>Temperature: <span id='current-temp'></span> °F</p>
             <p>Wind: <span id='current-wind'></span> MPH</p>
             <p>Humidity: <span id='current-humidity'></span></p>
             <p>UV Index: <span id='current-uv'></span></p>
         </div>
+        <!-- five day forecast display -->
         <div id='upcoming-forecast'>
-           <h3>5 Day Forecast:</h3>
-           <div id='day-one'></div>
-           <div id='day-two'></div> 
-           <div id='day-three'></div> 
-           <div id='day-four'></div> 
-           <div id='day-five'></div>  
+           <h3>5 Day Forecast:</h3> 
         </div>
     </div>
     <script src='./assets/js/script.js'></script>

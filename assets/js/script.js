@@ -20,20 +20,24 @@ function weatherSearch() {
         url: weatherUrl,
         method: 'GET',
     }).then(function (response) {
-        console.log(response);
+        
         // appending current weather information
         $(currentCityEl).append(response.name);
         $(currentDateEl).append(moment().format('MM/DD/YYYY'));
-        $(currentIconEl).append(response.weather.icon);
+        $(currentIconEl).append()
         $(currentTempEl).append(response.main.temp);
         $(currentWindEl).append(response.wind.speed);
         $(currentHumidityEl).append(response.main.humidity);
 
+        // appending current weather icon
+        var weatherIcon = (response.weather[0].icon);
+        var iconUrl = 'https://openweathermap.org/img/w/' + weatherIcon + '.png';
+        $('#current-icon').attr('src', iconUrl);
+
+        // variables to record latitute and longitude for OneCall API
         var lat = (response.coord.lat);
         var lon = (response.coord.lon);
         var oneCallUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&exclude={part}&appid=2aa854b2e1b53a068dd2a8b6738c490f';
-
-        console.log(oneCallUrl);
 
         $.ajax({
             url: oneCallUrl,
@@ -46,10 +50,15 @@ function weatherSearch() {
             // appending five day forecast
             for (var i = 1; i <= 5; i++) {
                 var createDate = document.createElement('h3');
-                var createIcon;
+                var createIcon = document.createElement('img');
                 var createTemp = document.createElement('p');
                 var createWind = document.createElement('p');
                 var createHumidity = document.createElement('p');
+
+                var fiveDayIcon = (response.daily[i].weather[0].icon);
+                var fiveDayIconUrl = 'https://openweathermap.org/img/w/' + fiveDayIcon + '.png';
+                $(createIcon).attr('src', fiveDayIconUrl);
+                $(upcomingForecastEl).append(createIcon);
 
                 $(createTemp).text('Temp: ' + response.daily[i].temp.day + ' °F');
                 $(upcomingForecastEl).append(createTemp);
