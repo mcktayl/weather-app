@@ -28,6 +28,21 @@ function weatherSearch() {
         $(currentTempEl).append(response.main.temp);
         $(currentWindEl).append(response.wind.gust);
         $(currentHumidityEl).append(response.main.humidity);
+
+        var lat = (response.coord.lat);
+        var lon = (response.coord.lon);
+        var oneCallUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude={part}&appid=2aa854b2e1b53a068dd2a8b6738c490f';
+
+        console.log(oneCallUrl);
+
+        $.ajax({
+            url: oneCallUrl,
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response)
+
+            $(currentUVEl).append(response.current.uvi)
+        })
     })
 }
 
