@@ -23,9 +23,24 @@
     </div>
     <div class='previous-search-container'></div>
     <div class='results-container'>
-        <div id='current-weather'></div>
+        <div id='current-weather'>
+            <div id='current-header'>
+            <span id='current-city'></span>
+            <span id='current-date'></span>
+            <span id='current-icon'></span>
+            </div>
+            <span id='current-temp'>Temperature:</span>
+            <span id='current-wind'>Wind:</span>
+            <span id='current-humidity'>Humidity:</span>
+            <span id='current-uv'>UV Index:</span>
+        </div>
         <div id='upcoming-forecast'>
-           <h3>5 Day Forecast</h3> 
+           <h3>5 Day Forecast:</h3>
+           <div id='day-one'></div>
+           <div id='day-two'></div> 
+           <div id='day-three'></div> 
+           <div id='day-four'></div> 
+           <div id='day-five'></div>  
         </div>
     </div>
     <script src='./assets/js/script.js'></script>
