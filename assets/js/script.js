@@ -24,7 +24,6 @@ function weatherSearch() {
         // appending current weather information
         $(currentCityEl).append(response.name);
         $(currentDateEl).append(moment().format('MM/DD/YYYY'));
-        $(currentIconEl).append()
         $(currentTempEl).append(response.main.temp);
         $(currentWindEl).append(response.wind.speed);
         $(currentHumidityEl).append(response.main.humidity);
@@ -47,7 +46,7 @@ function weatherSearch() {
 
             $(currentUVEl).append(response.current.uvi)
 
-            // appending five day forecast
+            // loop for creating five day forecast
             for (var i = 1; i <= 5; i++) {
                 var createDate = document.createElement('h3');
                 var createIcon = document.createElement('img');
@@ -55,11 +54,15 @@ function weatherSearch() {
                 var createWind = document.createElement('p');
                 var createHumidity = document.createElement('p');
 
+                // appending weather icons
                 var fiveDayIcon = (response.daily[i].weather[0].icon);
                 var fiveDayIconUrl = 'https://openweathermap.org/img/w/' + fiveDayIcon + '.png';
                 $(createIcon).attr('src', fiveDayIconUrl);
                 $(upcomingForecastEl).append(createIcon);
 
+                // appending five day forecast to container
+                $(createDate).text(moment().add(i, 'days').format('MM/DD/YYYY'));
+                $(upcomingForecastEl).append(createDate);
                 $(createTemp).text('Temp: ' + response.daily[i].temp.day + ' °F');
                 $(upcomingForecastEl).append(createTemp);
                 $(createWind).text('Wind: ' + response.daily[i].wind_speed + ' MPH');
