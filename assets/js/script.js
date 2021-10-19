@@ -26,12 +26,12 @@ function weatherSearch() {
         $(currentDateEl).append(moment().format('MM/DD/YYYY'));
         $(currentIconEl).append(response.weather.icon);
         $(currentTempEl).append(response.main.temp);
-        $(currentWindEl).append(response.wind.gust);
+        $(currentWindEl).append(response.wind.speed);
         $(currentHumidityEl).append(response.main.humidity);
 
         var lat = (response.coord.lat);
         var lon = (response.coord.lon);
-        var oneCallUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude={part}&appid=2aa854b2e1b53a068dd2a8b6738c490f';
+        var oneCallUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&exclude={part}&appid=2aa854b2e1b53a068dd2a8b6738c490f';
 
         console.log(oneCallUrl);
 
@@ -42,6 +42,22 @@ function weatherSearch() {
             console.log(response)
 
             $(currentUVEl).append(response.current.uvi)
+
+            // appending five day forecast
+            for (var i = 1; i <= 5; i++) {
+                var createDate = document.createElement('h3');
+                var createIcon;
+                var createTemp = document.createElement('p');
+                var createWind = document.createElement('p');
+                var createHumidity = document.createElement('p');
+
+                $(createTemp).text('Temp: ' + response.daily[i].temp.day + ' °F');
+                $(upcomingForecastEl).append(createTemp);
+                $(createWind).text('Wind: ' + response.daily[i].wind_speed + ' MPH');
+                $(upcomingForecastEl).append(createWind);
+                $(createHumidity).text('Humidity: ' + response.daily[i].humidity);
+                $(upcomingForecastEl).append(createHumidity);
+            }
         })
     })
 }
