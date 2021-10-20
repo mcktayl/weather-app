@@ -66,8 +66,8 @@ function weatherSearch(searchValue) {
             for (var i = 1; i <= 5; i++) {
 
                 // creating the card to display each day using bootstrap
-                var forecastCol = $("<div class='col-12 col-md-6 col-lg forecast-day mb-3'>");
-                var forecastCard = $("<div class='card'>");
+                var forecastCol = $("<div class='mb-3'>");
+                var forecastCard = $("<div class='card p-3'>");
                 var forecastCardBody = $("<div class='card-body'>");
                 var forecastDate = $("<h5 class='card-title'>");
                 var forecastIcon = $("<img>");
