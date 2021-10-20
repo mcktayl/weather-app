@@ -67,7 +67,7 @@ function weatherSearch(searchValue) {
 
                 // creating the card to display each day using bootstrap
                 var forecastCol = $("<div class='mb-3'>");
-                var forecastCard = $("<div class='card p-3'>");
+                var forecastCard = $("<div class='card p-2'>");
                 var forecastCardBody = $("<div class='card-body'>");
                 var forecastDate = $("<h5 class='card-title'>");
                 var forecastIcon = $("<img>");
@@ -79,7 +79,7 @@ function weatherSearch(searchValue) {
                 forecastIcon.attr('src', 'https://openweathermap.org/img/w/' + response.daily[i].weather[0].icon + '.png');
                 forecastDate.text(moment().add(i, 'days').format('MM/DD/YYYY'));
                 forecastTemp.text('Temp: ' + response.daily[i].temp.day + ' °F');
-                forecastWind.text('Wind: ' + response.daily[i].wind_speed + ' MPH')
+                forecastWind.text('Wind: ' + response.daily[i].wind_speed + ' mph')
                 forecastHumidity.text('Humidity: ' + response.daily[i].humidity + ' %');
 
                 // appending cards to the upcoming forecast element
@@ -132,7 +132,7 @@ function saveSearchResult (searchValue) {
 function displaySearchHistory () {
    previousSearchListEl.empty();
    cityList.forEach(function(city) {
-       var searchHistoryItem = $('<li class="list-group-item city-btn">');
+       var searchHistoryItem = $('<li class="list-group-item city-btn ms-2">');
        searchHistoryItem.attr('data-value', city);
        searchHistoryItem.text(city);
        previousSearchListEl.prepend(searchHistoryItem)

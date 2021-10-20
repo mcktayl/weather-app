@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <link rel='stylesheet' href='./assets/css/style.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
@@ -20,9 +21,9 @@
         </div>
     </nav>
     <!-- div containing both search and weather columns -->
-    <div class='row justify-content-start'>
+    <div class='row justify-content-start ms-2'>
         <!-- div containing search container and previous search list within one column-->
-        <div class='search-col col-4'>
+        <div class='search-col col-4 ms-2'>
             <!-- search container -->
             <div class='search-container container'>
                 <span class='h3'>Search for a City:</span>
@@ -35,12 +36,12 @@
                 </form>
             </div>
             <!-- previous search list -->
-            <div class='previous-search-container'>
-                <ul id='previous-search-list'></ul>
+            <div class='previous-search-container ms-2'>
+                <ul id='previous-search-list' class='ms-2'></ul>
             </div>
         </div>
         <!-- div containing current weather and 5 day forecast as second column of page -->
-        <div class='weather-col col-8 d-none'>
+        <div class='weather-col col-8 d-none me-2'>
             <!-- current search results display -->
             <div id='current-weather' class='results-container shadow-sm p-3 mb-5 bg-body rounded'>
 
@@ -50,7 +51,7 @@
                     <span id='icon'><img id='current-icon' src=''></span>
                 </div>
                 <p class='mb-0'>Temperature: <span id='current-temp'></span> °F</p>
-                <p class='mb-0'>Wind: <span id='current-wind'></span> MPH</p>
+                <p class='mb-0'>Wind: <span id='current-wind'></span> mph</p>
                 <p class='mb-0'>Humidity: <span id='current-humidity'></span>%</p>
                 <p class='mb-0'>UV Index: <span id='current-uv' class='px-2'></span></p>
             </div>
