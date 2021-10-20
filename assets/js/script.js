@@ -27,6 +27,7 @@ function weatherSearch(searchValue) {
         
         // appending current weather information
         $(currentCityEl).append(response.name);
+        $(currentCityEl).addClass('')
         $(currentDateEl).append(moment().format('MM/DD/YYYY'));
         $(currentTempEl).append(response.main.temp);
         $(currentWindEl).append(response.wind.speed);
@@ -66,12 +67,16 @@ function weatherSearch(searchValue) {
 
                 // appending five day forecast to container
                 $(createDate).text(moment().add(i, 'days').format('MM/DD/YYYY'));
+                $(createDate).addClass('card-title');
                 $(upcomingForecastEl).append(createDate);
                 $(createTemp).text('Temp: ' + response.daily[i].temp.day + ' °F');
+                $(createTemp).addClass('card-text');
                 $(upcomingForecastEl).append(createTemp);
                 $(createWind).text('Wind: ' + response.daily[i].wind_speed + ' MPH');
+                $(createWind).addClass('card-text');
                 $(upcomingForecastEl).append(createWind);
                 $(createHumidity).text('Humidity: ' + response.daily[i].humidity + '%');
+                $(createHumidity).addClass('card-text');
                 $(upcomingForecastEl).append(createHumidity);
             }
         })

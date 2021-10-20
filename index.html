@@ -14,36 +14,40 @@
 
 <body>
     <!-- main header -->
-    <div class='container-fluid'>
-        <div class='row navbar navbar-dark bg-dark'>
-            <div class='col-12 text-center'></div>
-            <h1 class='navbar-brand pb-0 px-0'>Weather App</h1>
+    <nav class='navbar bg-primary'>
+        <div class='container-fluid'>
+            <span class='mb-0 h1 text-white'>Weather Dashboard</span>
         </div>
-    </div>
-    <!-- search container -->
-    <div class='search-container row content-row'>
-        <div class='col-12 col-md-3 bg-light pt-3'>
-            <h2>Search for a City:</h2>
-            <form>
-                <div class='form-group input-group'>
-                    <input id='search-input' class='form-control' name='search-input' type='text'
-                        placeholder='Enter city here.'>
-                    <button id='search-button' class='btn btn-info'><i class='fa fa-search'></i></button>
+    </nav>
+    <!-- div containing both search and weather columns -->
+    <div class='row justify-content-start'>
+        <!-- div containing search container and previous search list within one column-->
+        <div class='search-colm col-4'>
+            <!-- search container -->
+            <div class='search-container container'>
+                <div class=''>
+                    <p class='h3'>Search for a City:</p>
+                    <form>
+                        <div class='form-group input-group'>
+                            <input id='search-input' class='form-control' name='search-input' type='text'
+                                placeholder='Enter city here.'>
+                            <button id='search-button' class='btn'>Search</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+            <!-- previous search list -->
+            <div class='previous-search-container'>
+                <ul id='previous-search-list' class=''></ul>
+                <button id='clear-history-button' class='btn'>Clear History</button>
+            </div>
         </div>
-    </div>
-    <!-- previous search list -->
-    <div class='previous-search-container card'>
-        <ul id='previous-search-list' clas='list-group list-group-flush'></ul>
-        <button id='clear-history-button' class='hide btn'>Clear History</button>
-    </div>
-    <!-- current search results display -->
-    <div class='results-container'>
-        <div id='current-weather' class='col-12 col-md-9 hide'>
-            <div class='row'>
-                <div class='col-12'>
-                    <div id='current-header' class='border rounded my-3 px-3 py-3'>
+        <!-- div containing current weather and 5 day forecast as second column of page -->
+        <div class='weather-col col-4'>
+            <!-- current search results display -->
+            <div class='results-container'>
+                <div id='current-weather' class=''>
+                    <div id='current-header' class=''>
                         <h2 id='current-city'></h2>
                         <p id='current-date' class='text-muted'></p>
                         <span id='icon'><img id='current-icon' src=''></span>
@@ -51,15 +55,15 @@
                     <p class='mb-0'>Temperature: <span id='current-temp'></span> °F</p>
                     <p class='mb-0'>Wind: <span id='current-wind'></span> MPH</p>
                     <p class='mb-0'>Humidity: <span id='current-humidity'></span>%</p>
-                    <p>UV Index: <span id='current-uv'></span></p>
+                    <p class='mb-0'>UV Index: <span id='current-uv'></span></p>
+                </div>
+                <!-- five day forecast display -->
+                <div class='upcoming-forecast-container'>
+                    <h3>5 Day Forecast:</h3>
+                    <div id='upcoming-forecast'>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- five day forecast display -->
-        <div id='upcoming-forecast' class='row'>
-            <div>
-            <h3>5 Day Forecast:</h3>
-        </div>
         </div>
     </div>
     <script src='./assets/js/script.js'></script>
