@@ -21,7 +21,7 @@ In completing this application, I gained more experience with JQuery and using t
 
 ## Installation
 
-This application runs in the browswer and requires no installation by the user.
+This application runs in the browser and requires no installation by the user.
 
 ## Usage
 
