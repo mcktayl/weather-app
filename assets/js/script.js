@@ -53,31 +53,31 @@ function weatherSearch(searchValue) {
 
             // loop for creating five day forecast
             for (var i = 1; i <= 5; i++) {
-                var createDate = document.createElement('h3');
-                var createIcon = document.createElement('img');
-                var createTemp = document.createElement('p');
-                var createWind = document.createElement('p');
-                var createHumidity = document.createElement('p');
+                var forecastCol = $("<div class='col-12 col-md-6 col-lg forecast-day mb-3'>");
+                var forecastCard = $("<div class='card'>");
+                var forecastCardBody = $("<div class='card-body'>");
+                var forecastDate = $("<h5 class='card-title'>");
+                var forecastIcon = $("<img>");
+                var forecastTemp = $("<p class='card-text mb-0'>");
+                var forecastWind = $("<p class='card-text mb-0'>");
+                var forecastHumidity = $("<p class='card-text mb-0'>");
 
-                // appending weather icons
-                var fiveDayIcon = (response.daily[i].weather[0].icon);
-                var fiveDayIconUrl = 'https://openweathermap.org/img/w/' + fiveDayIcon + '.png';
-                $(createIcon).attr('src', fiveDayIconUrl);
-                $(upcomingForecastEl).append(createIcon);
 
-                // appending five day forecast to container
-                $(createDate).text(moment().add(i, 'days').format('MM/DD/YYYY'));
-                $(createDate).addClass('card-title');
-                $(upcomingForecastEl).append(createDate);
-                $(createTemp).text('Temp: ' + response.daily[i].temp.day + ' °F');
-                $(createTemp).addClass('card-text');
-                $(upcomingForecastEl).append(createTemp);
-                $(createWind).text('Wind: ' + response.daily[i].wind_speed + ' MPH');
-                $(createWind).addClass('card-text');
-                $(upcomingForecastEl).append(createWind);
-                $(createHumidity).text('Humidity: ' + response.daily[i].humidity + '%');
-                $(createHumidity).addClass('card-text');
-                $(upcomingForecastEl).append(createHumidity);
+                $('#upcoming-forecast').append(forecastCol);
+                forecastCol.append(forecastCard);
+                forecastCard.append(forecastCardBody);
+
+                forecastCardBody.append(forecastDate);
+                forecastCardBody.append(forecastIcon);
+                forecastCardBody.append(forecastTemp);
+                forecastCardBody.append(forecastWind);
+                forecastCardBody.append(forecastHumidity);
+                
+                forecastIcon.attr('src', 'https://openweathermap.org/img/w/' + response.daily[i].weather[0].icon + '.png');
+                forecastDate.text(moment().add(i, 'days').format('MM/DD/YYYY'));
+                forecastTemp.text('Temp: ' + response.daily[i].temp.day + ' °F');
+                forecastWind.text('Wind: ' + response.daily[i].wind_speed + ' MPH')
+                forecastHumidity.text('Humidity: ' + response.daily[i].humidity + ' %');
             }
         })
     })
@@ -86,14 +86,15 @@ function weatherSearch(searchValue) {
 // function to save search to local storage
 function saveSearchResult (searchValue) {
     
-    if (searchValue) {
-        
+    if (searchValue) {   
+        // checks if search input is already on saved list
         if (cityList.indexOf(searchValue) === -1) {
+            // adds search input to list
             cityList.push(searchValue);
-
+            // calls function to display list
             displaySearchHistory();
-            clearHistoryButtonEl.removeClass('hide');
-            currentWeatherEl.removeClass('hide');
+            clearHistoryButtonEl.removeClass('d-none');
+            $('.weather-col').removeClass('d-none');
         } else {
             var removeIndex = cityList.indexOf(searchValue);
             cityList.splice(removeIndex, 1);
@@ -101,8 +102,8 @@ function saveSearchResult (searchValue) {
             cityList.push(searchValue);
 
             displaySearchHistory();
-            clearHistoryButtonEl.removeClass('hide');
-            currentWeatherEl.removeClass('hide');
+            clearHistoryButtonEl.removeClass('d-none');
+            $('.weather-col').removeClass('d-none');
         }
     }
 }
@@ -120,7 +121,7 @@ function displaySearchHistory () {
    localStorage.setItem('cities', JSON.stringify(cityList));
 }
 
-// function to render 
+// function to render previous searches to page 
 function initializeHistory() {
     if (localStorage.getItem('cities')) {
         var lastIndex = cityList.length - 1;
