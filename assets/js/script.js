@@ -29,17 +29,17 @@ function weatherSearch(searchValue) {
     }).then(function (response) {
         
         // appending current weather information
-        $(currentCityEl).text(response.name);
-        $(currentCityEl).addClass('')
-        $(currentDateEl).text(moment().format('MM/DD/YYYY'));
-        $(currentTempEl).text(response.main.temp);
-        $(currentWindEl).text(response.wind.speed);
-        $(currentHumidityEl).text(response.main.humidity);
+        currentCityEl.text(response.name);
+        currentCityEl.addClass('')
+        currentDateEl.text(moment().format('MM/DD/YYYY'));
+        currentTempEl.text(response.main.temp);
+        currentWindEl.text(response.wind.speed);
+        currentHumidityEl.text(response.main.humidity);
 
         // appending current weather icon
         var weatherIcon = (response.weather[0].icon);
         var iconUrl = 'https://openweathermap.org/img/w/' + weatherIcon + '.png';
-        $(currentIconEl).attr('src', iconUrl);
+        currentIconEl.attr('src', iconUrl);
 
         // variables to record latitute and longitude for OneCall API
         var lat = response.coord.lat;
@@ -51,7 +51,15 @@ function weatherSearch(searchValue) {
             method: 'GET',
         }).then(function (response) {
             
-            $(currentUVEl).text(response.current.uvi)
+            // inserts UV Index and color codes background
+            $(currentUVEl).text(' ' + response.current.uvi + ' ');
+            if (response.current.uvi <= 2) {
+                currentUVEl.addClass('bg-success text-white');
+            } else if (2 < response.current.uvi <= 5) {
+                currentUVEl.addClass('bg-warning text-white');
+            } else {
+                currentUVEl.addClass('bg-danger text-white');
+            }
 
             // loop for creating five day forecast
             upcomingForecastEl.empty();
@@ -75,7 +83,7 @@ function weatherSearch(searchValue) {
                 forecastHumidity.text('Humidity: ' + response.daily[i].humidity + ' %');
 
                 // appending cards to the upcoming forecast element
-                $(upcomingForecastEl).append(forecastCol);
+                upcomingForecastEl.append(forecastCol);
                 forecastCol.append(forecastCard);
                 forecastCard.append(forecastCardBody);
 
